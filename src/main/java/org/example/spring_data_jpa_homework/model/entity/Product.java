@@ -1,15 +1,15 @@
-package org.example.spring_data_jpa_homework.model;
+package org.example.spring_data_jpa_homework.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.w3c.dom.stylesheets.LinkStyle;
+import org.example.spring_data_jpa_homework.model.entity.ProductOrder;
+import org.example.spring_data_jpa_homework.model.response.ProductResponse;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,4 +27,9 @@ public class Product {
     private String Description;
     @OneToMany(mappedBy = "product")
     private List<ProductOrder>productOrder;
+
+    public ProductResponse toResponse() {
+        return new ProductResponse(this.id, this.ProductName,this.UnitPrice ,this.Description);
+
+    }
 }

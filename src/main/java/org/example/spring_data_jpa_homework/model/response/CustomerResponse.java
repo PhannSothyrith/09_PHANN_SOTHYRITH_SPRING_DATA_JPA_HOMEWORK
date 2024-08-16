@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -14,9 +15,9 @@ import java.util.Set;
 public class CustomerResponse {
     private Long id;
     private String name;
-    private String Address;
+    private String address;
     private String phoneNumber;
     private EmailResponse emailResponses;
-
+    private List<OrderResponse>orderResponses;
 
 }

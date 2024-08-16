@@ -3,10 +3,8 @@ package org.example.spring_data_jpa_homework.model.request;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.example.spring_data_jpa_homework.model.Customer;
-import org.example.spring_data_jpa_homework.model.Email;
-
-import java.util.UUID;
+import org.example.spring_data_jpa_homework.model.entity.Customer;
+import org.example.spring_data_jpa_homework.model.entity.Email;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -33,6 +31,9 @@ public class CustomerRequest {
     }
     public Email toEntity(String email){
         return new Email(null,this.email,null);
+    }
+    public Customer toCusEntity(Long id , Email email){
+        return  new Customer(id,this.CustomerName,this.Address,this.PhoneNumber,email,null);
     }
 
 
