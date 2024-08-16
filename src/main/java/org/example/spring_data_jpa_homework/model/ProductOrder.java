@@ -16,8 +16,9 @@ import java.util.UUID;
 @Table(name = "productsOrder")
 public class ProductOrder {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Integer quantity;
     @ManyToOne
     private Product product;
     @ManyToOne

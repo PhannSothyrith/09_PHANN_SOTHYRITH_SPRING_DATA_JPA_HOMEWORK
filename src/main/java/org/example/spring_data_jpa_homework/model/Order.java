@@ -19,8 +19,8 @@ import java.util.UUID;
 @Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Date orderDate;
     @Column(precision = 10 , scale = 2)
     private BigDecimal totalAmount;

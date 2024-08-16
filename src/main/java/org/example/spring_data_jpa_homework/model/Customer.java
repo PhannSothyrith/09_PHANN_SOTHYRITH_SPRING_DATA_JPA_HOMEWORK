@@ -5,9 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.spring_data_jpa_homework.model.response.CustomerResponse;
+import org.example.spring_data_jpa_homework.model.response.EmailResponse;
 
 import java.util.List;
-import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,15 +18,19 @@ import java.util.UUID;
 @Table(name = "customers")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String customerName;
     private String address;
     private String phoneNumber;
     @OneToOne
-    Email email;
+    private Email email;
     @OneToMany (mappedBy = "customer")
     private List<Order> order;
 
+    public CustomerResponse toResponse() {
+        EmailResponse emailResponse = email.toResponse();
+        return new CustomerResponse(this.id, this.customerName, this.address, this.phoneNumber,emailResponse);
+    }
 
 }
