@@ -53,7 +53,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Fetch customer by id")
+    @Operation(summary = "get customer by id")
     public ResponseEntity<ApiResponse<CustomerResponse>> getCustomerById (@PathVariable Long id){
         CustomerResponse customerResponse = customerService.getCustomerById(id);
         ApiResponse<CustomerResponse> apiResponse = ApiResponse.<CustomerResponse>builder()
@@ -80,7 +80,7 @@ public class CustomerController {
         CustomerResponse customerResponse = customerService.updateCustomerById(id, customerRequest);
         ApiResponse<CustomerResponse> apiResponse = ApiResponse.<CustomerResponse>builder()
                 .status(HttpStatus.OK)
-                .message("get customer by id successfully")
+                .message("Update customer id " + id + "successfully")
                 .payload(customerResponse)
                 .build();
         return ResponseEntity.ok(apiResponse);
