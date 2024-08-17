@@ -2,12 +2,9 @@ package org.example.spring_data_jpa_homework.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import org.example.spring_data_jpa_homework.model.entity.Product;
 import org.example.spring_data_jpa_homework.model.request.ProductRequest;
 import org.example.spring_data_jpa_homework.model.response.ApiResponse;
-import org.example.spring_data_jpa_homework.model.response.CustomerResponse;
 import org.example.spring_data_jpa_homework.model.response.ProductResponse;
 import org.example.spring_data_jpa_homework.service.ProductService;
 import org.springframework.http.HttpStatus;

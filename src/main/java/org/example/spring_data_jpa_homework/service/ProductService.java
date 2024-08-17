@@ -1,6 +1,5 @@
 package org.example.spring_data_jpa_homework.service;
 
-import org.example.spring_data_jpa_homework.model.entity.Product;
 import org.example.spring_data_jpa_homework.model.request.ProductRequest;
 import org.example.spring_data_jpa_homework.model.response.ProductResponse;
 

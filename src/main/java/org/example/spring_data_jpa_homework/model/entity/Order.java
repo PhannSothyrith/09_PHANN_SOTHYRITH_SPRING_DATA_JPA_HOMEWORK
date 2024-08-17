@@ -9,9 +9,8 @@ import org.example.spring_data_jpa_homework.model.enums.Status;
 import org.example.spring_data_jpa_homework.model.response.OrderResponse;
 import org.example.spring_data_jpa_homework.model.response.ProductResponse;
 
-import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @AllArgsConstructor
@@ -24,14 +23,13 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date orderDate;
-    @Column(precision = 10 , scale = 2)
-    private BigDecimal totalAmount;
+    private LocalDate orderDate;
+    private Float totalAmount;
     @Enumerated(EnumType.STRING)
     private Status status;
     @ManyToOne
     private Customer customer;
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<ProductOrder> productOrder;
 
     public OrderResponse toResponse() {

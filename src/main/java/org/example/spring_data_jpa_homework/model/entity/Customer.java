@@ -1,5 +1,6 @@
 package org.example.spring_data_jpa_homework.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,8 +28,17 @@ public class Customer {
     private String phoneNumber;
     @OneToOne
     private Email email;
-    @OneToMany (mappedBy = "customer")
+    @OneToMany (mappedBy = "customer",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Order> order;
+
+    public Customer(Long id, String customerName, String address, String phoneNumber, Email email) {
+        this.id = id;
+        this.customerName = customerName;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
 
     public CustomerResponse toResponse() {
         EmailResponse emailResponse = email.toResponse();

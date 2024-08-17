@@ -25,9 +25,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerResponse createCustomer(CustomerRequest customerRequest) {
+    public Customer createCustomer(CustomerRequest customerRequest) {
         Email email = emailRepository.save(customerRequest.toEntity(customerRequest.getEmail()));
-        return customerRepository.save(customerRequest.toCusEntity(email)).toResponse();
+        return customerRepository.save(customerRequest.toCusEntity(email));
 
     }
 
@@ -57,9 +57,12 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = customerRepository.findById(id).orElseThrow();
         customer.setCustomerName(customerRequest.getCustomerName());
         customer.setAddress(customerRequest.getAddress());
-        customer.setPhoneNumber(customerRequest.getPhoneNumber());
-        Email email = emailRepository.save(customerRequest.toEntity(customerRequest.getEmail()));
-        return customerRepository.save(customerRequest.toCusEntity(id,email)).toResponse();
+        customer.setPhoneNumber(customer.getPhoneNumber());
+        Email email = customer.getEmail();
+        email.setEmail(customerRequest.getEmail());
+        Customer customer1 = customerRepository.save(customer);
+        return customer1.toResponse();
+
 
     }
 }

@@ -3,6 +3,7 @@ package org.example.spring_data_jpa_homework.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.example.spring_data_jpa_homework.model.entity.Customer;
 import org.example.spring_data_jpa_homework.model.request.CustomerRequest;
 import org.example.spring_data_jpa_homework.model.response.ApiResponse;
 import org.example.spring_data_jpa_homework.model.response.CustomerResponse;
@@ -11,21 +12,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
 @Data
 @AllArgsConstructor
-@RequestMapping("/api/v1/custoomers")
+@RequestMapping("/api/v1/customers")
 public class CustomerController {
     private final CustomerService customerService;
 
     @PostMapping
     @Operation(summary = "Create customer")
     public ResponseEntity <?> createCustomer (@RequestBody CustomerRequest customerRequest){
-        CustomerResponse customer = customerService.createCustomer(customerRequest);
-        ApiResponse<CustomerResponse> apiResponse = ApiResponse.<CustomerResponse>builder()
+        Customer customer = customerService.createCustomer(customerRequest);
+        ApiResponse<Customer> apiResponse = ApiResponse.<Customer>builder()
                 .status(HttpStatus.CREATED)
                 .message("Customer created successfully")
                 .payload(customer)

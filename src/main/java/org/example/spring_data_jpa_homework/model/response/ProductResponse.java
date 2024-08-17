@@ -15,6 +15,6 @@ import java.math.BigDecimal;
 public class ProductResponse {
     private Long id;
     private String productName;
-    private BigDecimal unitPrice;
+    private Float unitPrice;
     private String description;
 }

@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 public class ProductRequest {
     @NotNull
     private String productName;
-    private BigDecimal unitPrice;
+    private Float unitPrice;
     private String description;
     public Product toEntity(){
         return new Product(null ,this.productName,this.unitPrice,this.description ,null);

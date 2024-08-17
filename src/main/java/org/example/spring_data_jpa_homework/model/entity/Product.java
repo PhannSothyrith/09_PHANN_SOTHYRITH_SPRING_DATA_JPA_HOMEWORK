@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.spring_data_jpa_homework.model.entity.ProductOrder;
 import org.example.spring_data_jpa_homework.model.response.ProductResponse;
 
 import java.math.BigDecimal;
@@ -22,10 +21,9 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String ProductName;
-    @Column(precision = 10 , scale = 2)
-    private BigDecimal UnitPrice;
+    private Float UnitPrice;
     private String Description;
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<ProductOrder>productOrder;
 
     public ProductResponse toResponse() {

@@ -1,11 +1,11 @@
 package org.example.spring_data_jpa_homework.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.spring_data_jpa_homework.model.entity.Customer;
 import org.example.spring_data_jpa_homework.model.response.EmailResponse;
 
 @AllArgsConstructor
@@ -21,6 +21,7 @@ public class Email {
     @Column(nullable = false , unique = true)
     private String email;
     @OneToOne(mappedBy = "email")
+    @JsonIgnore
     Customer customer;
 
     public EmailResponse toResponse(){
